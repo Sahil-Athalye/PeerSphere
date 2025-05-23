@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useContext, createContext, useEffect } from 'react';
-import { ChevronDown, Search, Bell, Home, FileText, Users, BarChart3, Settings, LogOut, Check, X, Clock, AlertCircle, Star, Calendar, Upload, Plus, Filter, TrendingUp, MessageSquare, Award, BookOpen, Mail, Shield, Link2, Eye, Download, Send, User, Building, GraduationCap, Tag, Globe, Activity, Zap, CheckCircle, XCircle, ArrowRight, Menu, ChevronRight, Briefcase, Target, UserCheck, RefreshCw, Edit, Save, Camera } from 'lucide-react';
+import { ChevronDown, Search, Bell, Home, FileText, Users, BarChart3, Settings, LogOut, X, Clock, AlertCircle, Star, Upload, Plus, Filter, TrendingUp, MessageSquare, Award, BookOpen, Mail, Shield, Link2, Eye, Download, User, Globe, Activity, Zap, CheckCircle, ArrowRight, Menu, ChevronRight, Edit, Save, Camera, Target } from 'lucide-react';
 
 // Create contexts for state management
 const AuthContext = createContext();
