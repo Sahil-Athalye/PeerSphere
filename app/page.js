@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useContext, createContext, useEffect } from 'react';
 import { ChevronDown, Search, Bell, Home, FileText, Users, BarChart3, Settings, LogOut, X, Clock, AlertCircle, Star, Upload, Plus, Filter, TrendingUp, MessageSquare, Award, BookOpen, Mail, Shield, Link2, Eye, Download, User, Globe, Activity, Zap, CheckCircle, ArrowRight, Menu, ChevronRight, Edit, Save, Camera, Target } from 'lucide-react';
+import Image from 'next/image';
 
 // Create contexts for state management
 const AuthContext = createContext();
@@ -142,7 +143,7 @@ const generateDummyData = () => {
     };
   };
 
-  const generateNotifications = (userId) => {
+  const generateNotifications = () => {
     const types = ['review_request', 'review_received', 'paper_accepted', 'new_follower', 'comment', 'deadline'];
     const notifications = [];
     
@@ -211,7 +212,7 @@ const AuthProvider = ({ children }) => {
 
   const demoUsers = users.slice(0, 5);
 
-  const login = (email, password) => {
+  const login = (email) => {
     const foundUser = users.find(u => u.email === email);
     if (foundUser) {
       setUser(foundUser);
@@ -592,7 +593,7 @@ const LoginPage = () => {
                 className="w-full text-left p-3 border border-gray-200 rounded-lg hover:bg-gray-50 flex items-center justify-between"
               >
                 <div className="flex items-center">
-                  <img
+                  <Image
                     src={user.avatar}
                     alt={user.name}
                     className="h-8 w-8 rounded-full mr-3"
@@ -610,7 +611,7 @@ const LoginPage = () => {
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <button
               onClick={() => setAuthStep('register')}
               className="text-blue-600 hover:text-blue-700 font-medium"
@@ -902,7 +903,7 @@ const RegistrationPage = () => {
                 <div>
                   <p className="text-sm font-medium text-blue-900">Verification Process</p>
                   <p className="text-sm text-blue-700 mt-1">
-                    After registration, we'll send a verification email to your institutional address. 
+                    After registration, we&apos;ll send a verification email to your institutional address. 
                     You can connect your ORCID for additional verification.
                   </p>
                 </div>
@@ -994,7 +995,7 @@ const Sidebar = () => {
               onClick={() => setShowUserMenu(!showUserMenu)}
               className="w-full flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-50"
             >
-              <img
+              <Image
                 src={user?.avatar}
                 alt={user?.name}
                 className="h-8 w-8 rounded-full"
@@ -1019,7 +1020,7 @@ const Sidebar = () => {
                       }}
                       className="w-full text-left px-3 py-2 text-sm rounded hover:bg-gray-50 flex items-center space-x-2"
                     >
-                      <img
+                      <Image
                         src={demoUser.avatar}
                         alt={demoUser.name}
                         className="h-6 w-6 rounded-full"
@@ -1103,7 +1104,7 @@ const Header = () => {
             </div>
 
             <div className="hidden lg:flex items-center space-x-2">
-              <img
+              <Image
                 src={user?.avatar}
                 alt={user?.name}
                 className="h-8 w-8 rounded-full"
@@ -1190,7 +1191,7 @@ const NotificationDropdown = ({ notifications, onClose }) => {
 // Dashboard Component
 const Dashboard = () => {
   const { user } = useAuth();
-  const { getUserPapers, getPapersToReview, papers, reviews } = useApp();
+  const { getUserPapers, getPapersToReview, papers } = useApp();
 
   const userPapers = getUserPapers();
   const papersToReview = getPapersToReview();
@@ -1207,7 +1208,7 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Welcome back, {user?.name}</h1>
-        <p className="text-gray-600 mt-1">Here's what's happening in your research network</p>
+        <p className="text-gray-600 mt-1">Here&apos;s what&apos;s happening in your research network</p>
       </div>
 
       {/* Stats Grid */}
@@ -1526,7 +1527,7 @@ const ReviewSummary = ({ review }) => {
     <div className="bg-gray-50 rounded-lg p-4">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center space-x-3">
-          <img
+          <Image
             src={review.reviewer.avatar}
             alt={review.reviewer.name}
             className="h-8 w-8 rounded-full"
@@ -1566,8 +1567,8 @@ const ReviewSummary = ({ review }) => {
 
 // Paper Submission Form Component
 const PaperSubmissionForm = ({ onClose }) => {
-  const { user } = useAuth();
-  const { submitPaper } = useApp();
+  // const { user } = useAuth();
+  // const { submitPaper } = useApp();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     title: '',
@@ -1591,7 +1592,7 @@ const PaperSubmissionForm = ({ onClose }) => {
   ];
 
   const handleSubmit = () => {
-    const paper = submitPaper(formData);
+    // const paper = submitPaper(formData);
     onClose();
   };
 
@@ -1946,7 +1947,7 @@ const ReviewPapers = () => {
 
 // Review Paper Card Component
 const ReviewPaperCard = ({ paper, onReview }) => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const [showReviewerMatch, setShowReviewerMatch] = useState(false);
 
   // Calculate expertise match
@@ -1974,7 +1975,7 @@ const ReviewPaperCard = ({ paper, onReview }) => {
       <div className="flex items-center justify-between pt-4 border-t">
         <div className="flex items-center space-x-3">
           {paper.authors.slice(0, 3).map((author, index) => (
-            <img
+            <Image
               key={index}
               src={author.avatar}
               alt={author.name}
@@ -2010,8 +2011,8 @@ const ReviewPaperCard = ({ paper, onReview }) => {
           <h4 className="text-sm font-medium text-blue-900 mb-2">Expertise Match Details</h4>
           <div className="space-y-1 text-sm text-blue-800">
             <p>• Your expertise in {paper.field} aligns with this paper</p>
-            <p>• You've reviewed {Math.floor(Math.random() * 5) + 1} similar papers</p>
-            <p>• Your recent work overlaps with the paper's keywords</p>
+            <p>• You&apos;ve reviewed {Math.floor(Math.random() * 5) + 1} similar papers</p>
+            <p>• Your recent work overlaps with the paper&apos;s keywords</p>
           </div>
         </div>
       )}
@@ -2195,11 +2196,11 @@ const ReviewForm = ({ paper, onClose }) => {
 
 // Analytics View
 const Analytics = () => {
-  const { user } = useAuth();
-  const { papers, reviews } = useApp();
+  // const { user } = useAuth();
+  // const { papers, reviews } = useApp();
   
-  const userPapers = papers.filter(p => p.authors.some(a => a.id === user?.id));
-  const userReviews = reviews.filter(r => r.reviewer.id === user?.id);
+  // const userPapers = papers.filter(p => p.authors.some(a => a.id === user?.id));
+  // const userReviews = reviews.filter(r => r.reviewer.id === user?.id);
 
   // Generate monthly activity data
   const monthlyActivity = Array.from({ length: 6 }, (_, i) => {
@@ -2426,7 +2427,7 @@ const Profile = () => {
         <div className="relative h-32 bg-gradient-to-r from-blue-500 to-blue-600 rounded-t-lg">
           <div className="absolute -bottom-12 left-8">
             <div className="relative">
-              <img
+              <Image
                 src={user?.avatar}
                 alt={user?.name}
                 className="h-24 w-24 rounded-full border-4 border-white"
@@ -2588,7 +2589,7 @@ const Profile = () => {
               <CheckCircle className="h-4 w-4 text-green-600" />
             </div>
             <div className="flex-1">
-              <p className="text-sm text-gray-900">Completed review for "Machine Learning in Healthcare"</p>
+              <p className="text-sm text-gray-900">Completed review for &quot;Machine Learning in Healthcare&quot;</p>
               <p className="text-xs text-gray-500">5 days ago</p>
             </div>
           </div>
@@ -2663,7 +2664,7 @@ const SettingsView = () => {
           <label className="flex items-center justify-between">
             <div>
               <p className="text-sm font-medium text-gray-900">Review Requests</p>
-              <p className="text-xs text-gray-500">Get notified when you're invited to review a paper</p>
+              <p className="text-xs text-gray-500">Get notified when you&apos;re invited to review a paper</p>
             </div>
             <input
               type="checkbox"
